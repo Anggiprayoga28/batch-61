@@ -8,5 +8,5 @@ document.querySelector('form').addEventListener('submit', function(e) {
     console.log('Subjek:', document.getElementById('subject').value);
     console.log('Pesan:', document.getElementById('message').value);
     
-    alert('Form telah dikirim!');
+    alert('Form Telah Dikirim!');
 });
