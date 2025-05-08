@@ -1,64 +1,132 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anggi Porto - Portfolio</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.rtl.min.css" integrity="sha384-q8+l9TmX3RaSz3HKGBmqP2u5MkgeN7HrfOJBLcTgZsQsbrx8WqqxdA5PuwUV9WIx" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    
+</head>
 
-    <title>myproject</title>
-  </head>
-  <body>
-
+<body>
+   
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <a class="navbar-brand" href="#">
+                <img src="img/logo dumbways.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Project</a>
+                    </li>
+                    
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+            </div>
+            <a href="#" class="btn btn-dark" tabindex="-1" role="button" aria-disabled="true">Contact Me</a>
         </div>
-      </nav>
+    </nav>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Add My Project Section -->
+     
+    <div class="container">
+       <div class="myproject">
+            <h2 class="section-title">ADD MY PROJECT</h2>
+        
+            <div class="project-form-container">
+                <form id="project-form">
+                    <div class="form-group">
+                        <label for="project-name">Project Name</label>
+                        <input type="text" id="project-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="start-date">Start Date</label>
+                                <input type="date" id="start-date" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="end-date">End Date</label>
+                                <input type="date" id="end-date" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" class="form-control" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Technologies</label>
+                        <div class="tech-options">
+                            <div class="tech-option">
+                                <input type="checkbox" id="node-js" value="Node.js" class="form-check-input">
+                                <label for="node-js" class="form-check-label">Node.js</label>
+                            </div>
+                            <div class="tech-option">
+                                <input type="checkbox" id="next-js" value="Next.js" class="form-check-input">
+                                <label for="next-js" class="form-check-label">Next.js</label>
+                            </div>
+                            <div class="tech-option">
+                                <input type="checkbox" id="react-js" value="React.js" class="form-check-input">
+                                <label for="react-js" class="form-check-label">React.js</label>
+                            </div>
+                            <div class="tech-option">
+                                <input type="checkbox" id="typescript" value="TypeScript" class="form-check-input">
+                                <label for="typescript" class="form-check-label">TypeScript</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="image-upload">Upload Image</label>
+                        <div class="file-input-wrapper">
+                            <label for="image-upload" class="choose-btn">choose</label>
+                            <input type="text" id="image-path" readonly>
+                            <input type="file" id="image-upload" class="hidden" accept="image/*">
+                            <button type="button" id="attach-btn" class="attach-btn">📎</button>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" id="project-id">
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-dark" id="submit-btn">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+        <div class="my-projectku">
+            <div class="project-form-container">
+            <!-- Projects Grid Section -->
+            <section class="projects-section" id="my-project">
+                <h2 class="section-title">MY PROJECT</h2>
+                <div class="projects-grid" id="projects-container">
+                    <!-- Project cards will be added here dynamically -->
+                </div>
+            </section>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Section -->
+
+
+    <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
-    -->
-  </body>
+</body>
 </html>
