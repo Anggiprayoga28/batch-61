@@ -1,16 +1,3 @@
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    
-    console.log('Nama:', document.getElementById('name').value);
-    console.log('Email:', document.getElementById('email').value);
-    console.log('Telepon:', document.getElementById('phone').value);
-    console.log('Subjek:', document.getElementById('subject').value);
-    console.log('Pesan:', document.getElementById('message').value);
-    
-    alert('Form telah dikirim!');
-});
-
 /// DOM Elements
 const projectForm = document.getElementById('project-form');
 const projectNameInput = document.getElementById('project-name');
@@ -24,7 +11,7 @@ const imagePath = document.getElementById('image-path');
 const attachBtn = document.getElementById('attach-btn');
 const submitBtn = document.getElementById('submit-btn');
 
-// Demo Gambbar
+// Sample images for demo
 const demoImages = [
     'https://i.imgur.com/ZY4hACv.jpg', // code image
     'https://i.imgur.com/IaYJkZY.jpg', // app image
@@ -143,85 +130,72 @@ function resetForm() {
     submitBtn.textContent = 'submit';
 }
 
-// Render projects
+// PERUBAHAN: Menggunakan array mapping untuk render projects
 function renderProjects() {
-    projectsContainer.innerHTML = '';
-    
     // Sort projects by creation date (newest first)
     const sortedProjects = [...projects].sort((a, b) => 
         new Date(b.createdAt) - new Date(a.createdAt)
     );
-    
-    sortedProjects.forEach(project => {
-        const projectCard = createProjectCard(project);
-        projectsContainer.appendChild(projectCard);
-    });
-}
 
-// Create project card
-function createProjectCard(project) {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    
-    // Calculate duration
-    const duration = calculateDuration(project.startDate, project.endDate);
-    
-    // Create Tech Icons HTML
-    const techIconsHTML = createTechIcons(project.technologies);
-    
-    // Use the stored image data directly
-    let imageSrc = project.image;
-    
-    card.innerHTML = `
-        <div class="project-image" style="background-image: url('${imageSrc}')"></div>
-        <div class="project-info">
-            <div class="project-title">${project.name} - ${new Date(project.startDate).getFullYear()}</div>
-            <div class="project-date">durasi: ${duration} bulan</div>
-            <div class="project-author">author: 3 orang</div>
-            <div class="project-desc">
-                ${project.description.length > 100 
-                    ? project.description.substring(0, 100) + '...' 
-                    : project.description}
-            </div>
-            <div class="tech-badges">
-                ${techIconsHTML}
-            </div>
-            <div class="action-buttons">
-                <button class="edit-btn" data-id="${project.id}">edit</button>
-                <button class="delete-btn" data-id="${project.id}">delete</button>
-            </div>
-        </div>
-    `;
-    
-    // Add event listeners for edit and delete buttons
-    card.querySelector('.edit-btn').addEventListener('click', () => {
-        editProject(project.id);
-    });
-    
-    card.querySelector('.delete-btn').addEventListener('click', () => {
-        deleteProject(project.id);
-    });
-    
-    return card;
-}
-
-// Create tech icons
-function createTechIcons(technologies) {
-    let icons = '';
-    
-    technologies.forEach(tech => {
-        let icon = '';
+    // Menggunakan array map untuk membuat kartu HTML
+    const projectCardsHTML = sortedProjects.map(project => {
+        // Calculate duration
+        const duration = calculateDuration(project.startDate, project.endDate);
         
-        // Set icon based on technology
-        if (tech === 'Node.js') icon = '🟢';
-        else if (tech === 'Next.js') icon = '⚫';
-        else if (tech === 'React.js') icon = '⚛️';
-        else if (tech === 'TypeScript') icon = '🔷';
+        // Create Tech Icons HTML menggunakan join
+        const techIconsHTML = project.technologies.map(tech => {
+            let icon = '';
+            // Set icon based on technology
+            if (tech === 'Node.js') icon = '🟢';
+            else if (tech === 'Next.js') icon = '⚫';
+            else if (tech === 'React.js') icon = '⚛️';
+            else if (tech === 'TypeScript') icon = '🔷';
+            
+            return `<div class="tech-badge" title="${tech}">${icon}</div>`;
+        }).join('');
         
-        icons += `<div class="tech-badge" title="${tech}">${icon}</div>`;
+        // Use the stored image data directly
+        const imageSrc = project.image;
+        
+        return `
+            <div class="project-card" data-id="${project.id}">
+                <div class="project-image" style="background-image: url('${imageSrc}')"></div>
+                <div class="project-info">
+                    <div class="project-title">${project.name} - ${new Date(project.startDate).getFullYear()}</div>
+                    <div class="project-date">durasi: ${duration} bulan</div>
+                    <div class="project-author">author: 3 orang</div>
+                    <div class="project-desc">
+                        ${project.description.length > 100 
+                            ? project.description.substring(0, 100) + '...' 
+                            : project.description}
+                    </div>
+                    <div class="tech-badges">
+                        ${techIconsHTML}
+                    </div>
+                    <div class="action-buttons">
+                        <button class="edit-btn" data-id="${project.id}">edit</button>
+                        <button class="delete-btn" data-id="${project.id}">delete</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // Menggunakan innerHTML untuk menampilkan semua project cards sekaligus
+    projectsContainer.innerHTML = projectCardsHTML;
+    
+    // Add event listeners untuk edit dan delete
+    document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            editProject(button.getAttribute('data-id'));
+        });
     });
     
-    return icons;
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            deleteProject(button.getAttribute('data-id'));
+        });
+    });
 }
 
 // Edit project
