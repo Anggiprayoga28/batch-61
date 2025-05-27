@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="project-detail">
+    <h1 class="project-title">{{project.name}}</h1>
+    
+    <div class="project-content">
+      <div class="project-image-container">
+        <img src="{{project.image}}" alt="{{project.name}}" class="project-detail-image">
+      </div>
+      
+      <div class="project-info-container">
+        <div class="project-duration">
+          <h4>Duration</h4>
+          <div class="duration-item">
+            <i class="duration-icon">📅</i>
+            <span>{{project.startDate}} - {{project.endDate}}</span>
+          </div>
+          <div class="duration-item">
+            <i class="duration-icon">⏱️</i>
+            <span>{{project.duration}} month{{#if (gt project.duration 1)}}s{{/if}}</span>
+          </div>
+        </div>
+        
+        <div class="project-technologies">
+          <h4>Technologies</h4>
+          <div class="tech-icons">
+            {{#each project.technologies}}
+              <div class="tech-detail">
+                <div class="tech-icon">
+                  {{#if (eq this "Node.js")}}🟢{{/if}}
+                  {{#if (eq this "Next.js")}}⚫{{/if}}
+                  {{#if (eq this "React.js")}}⚛️{{/if}}
+                  {{#if (eq this "TypeScript")}}🔷{{/if}}
+                </div>
+                <span>{{this}}</span>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="project-description">
+      <h4>Project Description</h4>
+      <p>{{project.description}}</p>
+    </div>
+    
+    <div class="text-center mt-4">
+      <a href="/projects" class="btn btn-dark">Back to Projects</a>
+    </div>
+  </div>

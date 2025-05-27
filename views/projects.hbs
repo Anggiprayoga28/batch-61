@@ -1,0 +1,121 @@
+{{!-- Updated projects.hbs template to support the edit/delete functionality --}}
+<div class="container">
+  <div class="myproject">
+    <h2 class="section-title">ADD MY PROJECT</h2>
+    
+    <div class="project-form-container">
+      {{!-- We'll add an "Add New Project" button via JavaScript --}}
+      
+      <form id="project-form" action="/api/projects" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="project-name">Project Name</label>
+          <input type="text" id="project-name" name="projectName" class="form-control" required>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="start-date">Start Date</label>
+              <input type="date" id="start-date" name="startDate" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="end-date">End Date</label>
+              <input type="date" id="end-date" name="endDate" class="form-control" required>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" class="form-control" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Technologies</label>
+          <div class="tech-options">
+            <div class="tech-option">
+              <input type="checkbox" id="node-js" name="nodeJs" class="form-check-input">
+              <label for="node-js" class="form-check-label">Node.js</label>
+            </div>
+            <div class="tech-option">
+              <input type="checkbox" id="next-js" name="nextJs" class="form-check-input">
+              <label for="next-js" class="form-check-label">Next.js</label>
+            </div>
+            <div class="tech-option">
+              <input type="checkbox" id="react-js" name="reactJs" class="form-check-input">
+              <label for="react-js" class="form-check-label">React.js</label>
+            </div>
+            <div class="tech-option">
+              <input type="checkbox" id="typescript" name="typescript" class="form-check-input">
+              <label for="typescript" class="form-check-label">TypeScript</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="image-upload">Upload Image</label>
+          <div class="file-input-wrapper">
+            <label for="image-upload" class="choose-btn">choose</label>
+            <input type="text" id="image-path" readonly>
+            <input type="file" id="image-upload" name="image" class="hidden" accept="image/*">
+            <button type="button" id="attach-btn" class="attach-btn">📎</button>
+          </div>
+        </div>
+        
+        <input type="hidden" id="project-id" name="projectId">
+        <div class="text-end">
+          <button type="submit" class="btn btn-dark" id="submit-btn">submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="my-projectku">
+    <div class="project-form-container">
+      <!-- Projects Grid Section -->
+      <section class="projects-section" id="my-project">
+        <h2 class="section-title">MY PROJECT</h2>
+        <div class="projects-grid" id="projects-container">
+          {{#if projects.length}}
+            {{#each projects}}
+              <div class="project-card" data-id="{{this.id}}">
+                <div class="project-image" style="background-image: url('{{this.image}}')"></div>
+                <div class="project-info">
+                  <div class="project-title">{{this.name}} - {{this.startYear}}</div>
+                  <div class="project-date">durasi: {{this.duration}} bulan</div>
+                  <div class="project-author">author: 3 orang</div>
+                  <div class="project-desc">
+                    {{#if this.shortDescription}}
+                      {{this.shortDescription}}
+                    {{else}}
+                      {{this.description}}
+                    {{/if}}
+                  </div>
+                  <div class="tech-badges">
+                    {{#each this.technologies}}
+                      <div class="tech-badge" title="{{this}}">
+                        {{#if (eq this "Node.js")}}🟢{{/if}}
+                        {{#if (eq this "Next.js")}}⚫{{/if}}
+                        {{#if (eq this "React.js")}}⚛️{{/if}}
+                        {{#if (eq this "TypeScript")}}🔷{{/if}}
+                      </div>
+                    {{/each}}
+                  </div>
+                  <div class="action-buttons">
+                    <a href="/projects/{{this.id}}" class="btn btn-primary view-btn">view</a>
+                    <button type="button" class="btn btn-success edit-btn" data-id="{{this.id}}">edit</button>
+                    <button type="button" class="btn btn-danger delete-btn" data-id="{{this.id}}">delete</button>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          {{else}}
+            <p class="text-center">No projects added yet. Create one above!</p>
+          {{/if}}
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

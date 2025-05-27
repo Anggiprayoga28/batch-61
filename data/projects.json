@@ -1,0 +1,45 @@
+[
+  {
+    "id": "4bc175aa-17bc-465a-ba0b-a580e1147035",
+    "name": "anggi prayoga",
+    "startDate": "2025-04-27",
+    "endDate": "2025-06-06",
+    "description": "wertty",
+    "technologies": [
+      "Node.js",
+      "Next.js",
+      "React.js",
+      "TypeScript"
+    ],
+    "image": "/uploads/4d4d3567-581e-4797-a24b-59cc71cd9249.jpeg",
+    "createdAt": "2025-05-26T21:20:22.791Z"
+  },
+  {
+    "id": "46ca1535-d0f3-47ed-8274-8e941cb568c3",
+    "name": "hijral",
+    "startDate": "2025-04-29",
+    "endDate": "2025-05-17",
+    "description": "zwx",
+    "technologies": [
+      "Node.js",
+      "Next.js",
+      "React.js",
+      "TypeScript"
+    ],
+    "image": "/uploads/a160e7a7-73fb-4e64-88f5-13bda8c2f0e8.jpeg",
+    "createdAt": "2025-05-26T21:24:11.305Z"
+  },
+  {
+    "id": "7bb05d40-45d7-428f-835d-b2def39a837f",
+    "name": "hilman",
+    "startDate": "2025-04-29",
+    "endDate": "2025-06-07",
+    "description": "gffds",
+    "technologies": [
+      "Node.js"
+    ],
+    "image": "/uploads/29ddbf11-3266-4dc5-abea-b7ee57a9b2bc.jpeg",
+    "createdAt": "2025-05-26T21:26:48.178Z",
+    "updatedAt": "2025-05-26T21:52:06.470Z"
+  }
+]
